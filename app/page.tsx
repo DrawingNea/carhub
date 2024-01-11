@@ -5,7 +5,6 @@ import Image from "next/image";
 export default async function Home() {
   const allCars = await fetchCars();
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
-  console.log(allCars);
   return (
     <main className="overflow-hidden">
       <Hero />
@@ -21,7 +20,7 @@ export default async function Home() {
             <CustomFilter title="year" />
           </div>
         </div>
-        {isDataEmpty ? (
+        {!isDataEmpty ? (
           <section>
             <div className="home__cars-wrapper">
               {allCars?.map((car) => (
